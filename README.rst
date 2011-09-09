@@ -10,8 +10,6 @@ This is an alternate keyIdentifier.
 Usage
 -----
 
-Executes tests:
-
 ::
 
   // use native
