@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<title>keyChar Tester</title>
+<style>
+td { vertical-align: top; }
+.hide-rs .rs,
+.hide-kc .kc,
+.hide-cc .cc,
+.hide-wh .wh { display: none; }
+</style>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script src="keychar.min.js"></script>
+<script>
+$(function () {
+	$('input[type="text"]').bind('keydown keypress keyup', function (evt) {
+		var $li = $('<li>').prependTo('#' + evt.type);
+		$('<span>').addClass('rs').text('rs: ' + evt.keyChar() + ', ').appendTo($li);
+		$('<span>').addClass('kc').text('kc: ' + evt.keyCode   + ', ').appendTo($li);
+		$('<span>').addClass('cc').text('cc: ' + evt.charCode  + ', ').appendTo($li);
+		$('<span>').addClass('wh').text('wh: ' + evt.which).appendTo($li);
+	});
+	$('input[type="checkbox"]').change(function () {
+		$('body')[this.checked ? 'removeClass' : 'addClass']('hide-' + this.name);
+	});
+});
+</script>
+</head>
+<body>
+<p>
+<input type="text" size="30" />
+<input type="checkbox" name="rs" id="show-rs" checked="checked" /><label for="show-rs">rs</label>
+<input type="checkbox" name="kc" id="show-kc" checked="checked" /><label for="show-kc">kc</label>
+<input type="checkbox" name="cc" id="show-cc" checked="checked" /><label for="show-cc">cc</label>
+<input type="checkbox" name="wh" id="show-wh" checked="checked" /><label for="show-wh">wh</label>
+</p>
+<table><tbody>
+<tr>
+<th>keydown</th>
+<th>keypress</th>
+<th>keyup</th>
+</tr>
+<tr>
+<td><ul id="keydown"></ul></td>
+<td><ul id="keypress"></ul></td>
+<td><ul id="keyup"></ul></td>
+</tr>
+</tbody></table>
+</body>
+</html>
